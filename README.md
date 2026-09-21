@@ -1,7 +1,7 @@
 # TalleresMoviles
 
 **Estudiante:** Juan Esteban Vera Castro 
-**Código:** 23
+**Código:** 230232042
 
 ## Descripción
 Aplicación que demuestra el uso de widgets básicos de Flutter
