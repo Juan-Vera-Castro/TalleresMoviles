@@ -1,7 +1,7 @@
 # TalleresMoviles
 
-**Estudiante:** [Tu nombre completo]  
-**Código:** [Tu código]
+**Estudiante:** Juan Esteban Vera Castro 
+**Código:** 23
 
 ## Descripción
 Aplicación que demuestra el uso de widgets básicos de Flutter
