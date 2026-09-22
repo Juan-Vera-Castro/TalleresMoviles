@@ -20,4 +20,7 @@ y manejo de estado con setState().
 - Row, Image.network, Image.asset
 - ElevatedButton + setState
 - Container, ListView
+- Stack (texto sobre imagen)
+- GridView (4 celdas con icono y texto)
 - SnackBar
+- Column, Padding, SizedBox (diseño)
