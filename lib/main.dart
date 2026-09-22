@@ -71,6 +71,8 @@ class _HomePageState extends State<HomePage> {
                       width: 120,
                       height: 120,
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const _ImagenNoDisponible(width: 120, height: 120),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -113,28 +115,27 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20),
 
               // ListView con 4 ListTile
-              SizedBox(
-                height: 220,
-                child: ListView(
-                  children: const [
-                    ListTile(
-                      leading: Icon(Icons.map, color: Colors.blue),
-                      title: Text('Mapa'),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.photo, color: Colors.green),
-                      title: Text('Álbum'),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.phone, color: Colors.orange),
-                      title: Text('Contactos'),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.settings, color: Colors.grey),
-                      title: Text('Ajustes'),
-                    ),
-                  ],
-                ),
+              ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [
+                  ListTile(
+                    leading: Icon(Icons.map, color: Colors.blue),
+                    title: Text('Mapa'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.photo, color: Colors.green),
+                    title: Text('Álbum'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.phone, color: Colors.orange),
+                    title: Text('Contactos'),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.settings, color: Colors.grey),
+                    title: Text('Ajustes'),
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
 
@@ -150,6 +151,8 @@ class _HomePageState extends State<HomePage> {
                       child: Image.network(
                         'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const _ImagenNoDisponible(),
                       ),
                     ),
                     Container(
@@ -174,35 +177,34 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20),
 
               // ===== WIDGET EXTRA #4: GridView =====
-              SizedBox(
-                height: 240,
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  children: const [
-                    _CeldaGrid(
-                      color: Colors.teal,
-                      icono: Icons.home,
-                      texto: 'Inicio',
-                    ),
-                    _CeldaGrid(
-                      color: Colors.orange,
-                      icono: Icons.star,
-                      texto: 'Favoritos',
-                    ),
-                    _CeldaGrid(
-                      color: Colors.purple,
-                      icono: Icons.person,
-                      texto: 'Perfil',
-                    ),
-                    _CeldaGrid(
-                      color: Colors.red,
-                      icono: Icons.settings,
-                      texto: 'Ajustes',
-                    ),
-                  ],
-                ),
+              GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children: const [
+                  _CeldaGrid(
+                    color: Colors.teal,
+                    icono: Icons.home,
+                    texto: 'Inicio',
+                  ),
+                  _CeldaGrid(
+                    color: Colors.orange,
+                    icono: Icons.star,
+                    texto: 'Favoritos',
+                  ),
+                  _CeldaGrid(
+                    color: Colors.purple,
+                    icono: Icons.person,
+                    texto: 'Perfil',
+                  ),
+                  _CeldaGrid(
+                    color: Colors.red,
+                    icono: Icons.settings,
+                    texto: 'Ajustes',
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
             ],
@@ -246,6 +248,24 @@ class _CeldaGrid extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+// ===== Imagen de respaldo cuando Image.network no puede cargar =====
+class _ImagenNoDisponible extends StatelessWidget {
+  final double? width;
+  final double? height;
+
+  const _ImagenNoDisponible({this.width, this.height});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      color: Colors.grey.shade300,
+      child: const Icon(Icons.broken_image, color: Colors.grey, size: 40),
     );
   }
 }
