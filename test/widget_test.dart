@@ -25,6 +25,8 @@ void main() {
     await tester.pumpWidget(const MyApp());
 
     final boton = find.widgetWithText(ElevatedButton, 'Cambiar título');
+    await tester.ensureVisible(boton);
+    await tester.pumpAndSettle();
 
     await tester.tap(boton);
     await tester.pump();
