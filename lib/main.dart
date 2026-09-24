@@ -177,6 +177,71 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 24),
+
+                  // ===== Stack: texto sobre imagen =====
+                  _Seccion(
+                    titulo: 'Destacado',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: SizedBox(
+                        height: 180,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Image.network(
+                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  const _ImagenNoDisponible(),
+                            ),
+                            const DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.transparent, Colors.black87],
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 16,
+                              right: 16,
+                              bottom: 16,
+                              child: Text(
+                                'Texto sobre la imagen (Stack)',
+                                style: textTheme.titleLarge?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // ===== GridView con 4 celdas =====
+                  _Seccion(
+                    titulo: 'Accesos rápidos',
+                    child: GridView.count(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 1.4,
+                      children: const [
+                        _CeldaGrid(icono: Icons.home, texto: 'Inicio'),
+                        _CeldaGrid(icono: Icons.star, texto: 'Favoritos'),
+                        _CeldaGrid(icono: Icons.person, texto: 'Perfil'),
+                        _CeldaGrid(icono: Icons.settings, texto: 'Ajustes'),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 16),
                 ],
               ),
@@ -314,6 +379,40 @@ class _ImagenConEtiqueta extends StatelessWidget {
               ?.copyWith(color: colorScheme.onSurfaceVariant),
         ),
       ],
+    );
+  }
+}
+
+// ===== Clase auxiliar para las celdas del GridView =====
+class _CeldaGrid extends StatelessWidget {
+  final IconData icono;
+  final String texto;
+
+  const _CeldaGrid({required this.icono, required this.texto});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icono, color: colorScheme.primary, size: 32),
+          const SizedBox(height: 8),
+          Text(
+            texto,
+            style: TextStyle(
+              color: colorScheme.onPrimaryContainer,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

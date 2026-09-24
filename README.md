@@ -19,8 +19,12 @@ y manejo de estado con setState().
 - Scaffold, AppBar, Text
 - Row, Image.network, Image.asset
 - ElevatedButton + setState
-- Container, ListView
-- Stack (texto sobre imagen)
-- GridView (4 celdas con icono y texto)
-- SnackBar
-- Column, Padding, SizedBox (diseño)
+- Container, ListView (dentro de un Drawer, se abre con el botón de 3 líneas del AppBar)
+
+### Widgets adicionales
+- **Stack**: texto sobre una imagen con degradado (sección "Destacado")
+- **GridView**: 4 celdas con icono y texto (sección "Accesos rápidos")
+
+### Otros widgets de apoyo
+- Drawer, ListTile, SnackBar
+- Column, Padding, SizedBox, SingleChildScrollView (diseño)
