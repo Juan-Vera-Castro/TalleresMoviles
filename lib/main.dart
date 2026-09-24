@@ -72,7 +72,9 @@ class _HomePageState extends State<HomePage> {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
+      // Al tener un drawer, el AppBar muestra automáticamente el botón de 3 líneas
       appBar: AppBar(title: Text(_tituloAppBar)),
+      drawer: const _MenuLateral(),
       body: SingleChildScrollView(
         child: Center(
           child: ConstrainedBox(
@@ -175,103 +177,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
-
-                  // ===== ListView con 4 elementos =====
-                  _Seccion(
-                    titulo: 'Menú',
-                    child: Card(
-                      margin: EdgeInsets.zero,
-                      clipBehavior: Clip.antiAlias,
-                      child: ListView.separated(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _opcionesMenu.length,
-                        separatorBuilder: (context, index) =>
-                            const Divider(height: 1, indent: 72),
-                        itemBuilder: (context, index) {
-                          final opcion = _opcionesMenu[index];
-                          return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: colorScheme.secondaryContainer,
-                              child: Icon(
-                                opcion.icono,
-                                color: colorScheme.onSecondaryContainer,
-                              ),
-                            ),
-                            title: Text(opcion.texto),
-                            trailing: const Icon(Icons.chevron_right),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // ===== Stack: texto sobre imagen =====
-                  _Seccion(
-                    titulo: 'Destacado',
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: SizedBox(
-                        height: 180,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(
-                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  const _ImagenNoDisponible(),
-                            ),
-                            const DecoratedBox(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [Colors.transparent, Colors.black87],
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 16,
-                              right: 16,
-                              bottom: 16,
-                              child: Text(
-                                'Texto sobre la imagen (Stack)',
-                                style: textTheme.titleLarge?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // ===== GridView con 4 celdas =====
-                  _Seccion(
-                    titulo: 'Accesos rápidos',
-                    child: GridView.count(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      childAspectRatio: 1.4,
-                      children: const [
-                        _CeldaGrid(icono: Icons.home, texto: 'Inicio'),
-                        _CeldaGrid(icono: Icons.star, texto: 'Favoritos'),
-                        _CeldaGrid(icono: Icons.person, texto: 'Perfil'),
-                        _CeldaGrid(icono: Icons.settings, texto: 'Ajustes'),
-                      ],
-                    ),
-                  ),
                   const SizedBox(height: 16),
                 ],
               ),
@@ -297,6 +202,50 @@ const List<_OpcionMenu> _opcionesMenu = [
   _OpcionMenu(Icons.phone, 'Contactos'),
   _OpcionMenu(Icons.settings, 'Ajustes'),
 ];
+
+// ===== Menú desplegable (Drawer) con el ListView de 4 elementos =====
+class _MenuLateral extends StatelessWidget {
+  const _MenuLateral();
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(color: colorScheme.primary),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Menú',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          for (final opcion in _opcionesMenu)
+            ListTile(
+              leading: CircleAvatar(
+                backgroundColor: colorScheme.secondaryContainer,
+                child: Icon(
+                  opcion.icono,
+                  color: colorScheme.onSecondaryContainer,
+                ),
+              ),
+              title: Text(opcion.texto),
+              // Cierra el menú al elegir una opción
+              onTap: () => Navigator.pop(context),
+            ),
+        ],
+      ),
+    );
+  }
+}
 
 // ===== Sección con título, para mantener el mismo estilo en toda la página =====
 class _Seccion extends StatelessWidget {
@@ -365,40 +314,6 @@ class _ImagenConEtiqueta extends StatelessWidget {
               ?.copyWith(color: colorScheme.onSurfaceVariant),
         ),
       ],
-    );
-  }
-}
-
-// ===== Clase auxiliar para las celdas del GridView =====
-class _CeldaGrid extends StatelessWidget {
-  final IconData icono;
-  final String texto;
-
-  const _CeldaGrid({required this.icono, required this.texto});
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icono, color: colorScheme.primary, size: 32),
-          const SizedBox(height: 8),
-          Text(
-            texto,
-            style: TextStyle(
-              color: colorScheme.onPrimaryContainer,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
