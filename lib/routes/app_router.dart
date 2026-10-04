@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 
 import '../views/asincronia/asincronia_screen.dart';
 import '../views/ciclo_vida/ciclo_vida_screen.dart';
+import '../views/cronometro/cronometro_screen.dart';
 import '../views/home/home_screen.dart';
 import '../views/paso_parametros/detalle_screen.dart';
 import '../views/paso_parametros/paso_parametros_screen.dart';
@@ -41,6 +42,11 @@ final GoRouter appRouter = GoRouter(
       path: '/asincronia',
       name: 'asincronia',
       builder: (context, state) => const AsincroniaScreen(),
+    ),
+    GoRoute(
+      path: '/cronometro',
+      name: 'cronometro',
+      builder: (context, state) => const CronometroScreen(),
     ),
   ],
 );
