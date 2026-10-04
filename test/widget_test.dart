@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:taller1/isolates/tarea_pesada.dart';
 import 'package:taller1/main.dart';
 import 'package:taller1/views/asincronia/asincronia_screen.dart';
 import 'package:taller1/views/cronometro/cronometro_screen.dart';
@@ -66,5 +67,10 @@ void main() {
     await tester.tap(find.text('Iniciar'));
     await tester.pump(const Duration(milliseconds: 300));
     await tester.pumpWidget(const SizedBox());
+  });
+
+  test('sumaPesada calcula la suma de 1 a n', () {
+    expect(sumaPesada(10), 55);
+    expect(sumaPesada(1000000), 500000500000);
   });
 }
