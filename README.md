@@ -121,7 +121,40 @@ sequenceDiagram
 - Si se sale de la pantalla durante el cálculo, `dispose()` cierra el puerto y termina el Isolate.
 
 ## Capturas
-(inserta las imágenes)
+
+Tomadas en el emulador Pixel 8 (Android 16).
+
+### Inicio y menú
+<table>
+  <tr>
+    <td align="center"><img src="capturas/01_inicio.png" width="220" alt="Pantalla de inicio"><br>Inicio</td>
+    <td align="center"><img src="capturas/02_menu.png" width="220" alt="Menú lateral"><br>Menú (Drawer)</td>
+  </tr>
+</table>
+
+### Future / async / await
+<table>
+  <tr>
+    <td align="center"><img src="capturas/03_async_cargando.png" width="220" alt="Estado cargando"><br>Cargando…</td>
+    <td align="center"><img src="capturas/04_async_exito.png" width="220" alt="Estado éxito"><br>Éxito</td>
+    <td align="center"><img src="capturas/05_async_error.png" width="220" alt="Estado error"><br>Error</td>
+  </tr>
+</table>
+
+### Cronómetro (Timer)
+<table>
+  <tr>
+    <td align="center"><img src="capturas/06_cronometro.png" width="220" alt="Cronómetro en pausa"><br>En pausa: solo Reanudar y Reiniciar están activos</td>
+  </tr>
+</table>
+
+### Isolate
+<table>
+  <tr>
+    <td align="center"><img src="capturas/07_isolate_calculando.png" width="220" alt="Isolate calculando"><br>Calculando (el indicador sigue girando)</td>
+    <td align="center"><img src="capturas/08_isolate_resultado.png" width="220" alt="Resultado del Isolate"><br>Resultado recibido por mensaje</td>
+  </tr>
+</table>
 
 ---
 
