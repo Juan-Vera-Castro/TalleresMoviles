@@ -77,6 +77,14 @@ class CustomDrawer extends StatelessWidget {
               context.go('/ciclo_vida');
             },
           ),
+          //!TALLER SEGUNDO PLANO
+          ListTile(
+            leading: const Icon(Icons.hourglass_bottom),
+            title: const Text('Future / async / await'),
+            onTap: () {
+              context.go('/asincronia');
+            },
+          ),
         ],
       ),
     );

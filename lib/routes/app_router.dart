@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../views/asincronia/asincronia_screen.dart';
 import '../views/ciclo_vida/ciclo_vida_screen.dart';
 import '../views/home/home_screen.dart';
 import '../views/paso_parametros/detalle_screen.dart';
@@ -34,6 +35,12 @@ final GoRouter appRouter = GoRouter(
       path: '/ciclo_vida',
       name: 'ciclo_vida',
       builder: (context, state) => const CicloVidaScreen(),
+    ),
+    //!Rutas del taller de segundo plano
+    GoRoute(
+      path: '/asincronia',
+      name: 'asincronia',
+      builder: (context, state) => const AsincroniaScreen(),
     ),
   ],
 );
