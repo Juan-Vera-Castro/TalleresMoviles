@@ -1,0 +1,16 @@
+Talleres Moviles v1.0.1 (build 2)
+Fecha: 2026-11-02
+Responsable: Juan Vera Castro
+
+Actualizacion incremental sobre la version 1.0.0.
+
+Que cambio:
+- La pantalla principal ahora muestra la version instalada de la app
+  (por ejemplo "Version 1.0.1 (build 2)"), leida directamente del APK.
+- Se agrego el paquete package_info_plus para obtener la version.
+
+Como probar:
+1. Actualizar desde Firebase App Tester o desde el enlace del correo.
+2. Abrir la app y verificar que en el inicio aparezca "Version 1.0.1 (build 2)".
+
+Credenciales de prueba: no aplica (la app no tiene inicio de sesion).
