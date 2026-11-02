@@ -1,0 +1,4 @@
+storePassword=<contraseña del keystore>
+keyPassword=<contraseña de la clave>
+keyAlias=upload
+storeFile=<ruta completa a upload-keystore.jks>
