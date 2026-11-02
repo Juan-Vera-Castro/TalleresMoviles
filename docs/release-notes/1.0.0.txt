@@ -1,0 +1,17 @@
+Talleres Moviles v1.0.0 (build 1)
+Fecha: 2026-11-02
+Responsable: Juan Vera Castro
+
+Primera version distribuida por Firebase App Distribution.
+
+Que incluye:
+- Menu principal con acceso a todos los talleres.
+- Paso de parametros entre pantallas con go_router.
+- Ciclo de vida de un StatefulWidget.
+- Asincronia con Future, async y await.
+- Cronometro con Timer.
+- Tarea pesada ejecutada en un Isolate.
+- Nuevo icono de la app.
+- Permiso de INTERNET declarado.
+
+Credenciales de prueba: no aplica (la app no tiene inicio de sesion).
